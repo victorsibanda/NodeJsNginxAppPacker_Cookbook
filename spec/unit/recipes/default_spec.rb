@@ -34,9 +34,18 @@ describe 'NodeJSNginx::default' do
     it 'Should Start Nginx' do
       expect(chef_run).to start_service('nginx')
     end
-    # Start NodeJS
-    it 'Should Start NodeJs' do
-      expect(chef_run).to start_service('nodejs')
+
+
+    it 'should create a proxy.conf template in /etc/nginx/sites-available' do
+      expect(chef_run).to create_template '/etc/nginx/sites-available/proxy.conf'
+    end
+
+    it 'should symbolic link /etc/nginx/sites-available/proxy.conf to /etc/nginx/sites-enabled' do
+      expect(chef_run).to create_link '/etc/nginx/sites-available/proxy.conf'
+    end
+
+    it 'should remove default link from /etc/nginx/sites-enabled/default' do
+      expect(chef_run).to delete_link('/etc/nginx/sites-enabled/default')
     end
 
 

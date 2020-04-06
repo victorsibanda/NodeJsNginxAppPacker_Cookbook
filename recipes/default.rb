@@ -11,6 +11,17 @@ service 'nginx' do
   action [:enable, :start]
 end
 
-service 'nodejs' do
-  action [:enable, :start]
+
+template "/etc/nginx/sites-available/proxy.conf" do
+  source 'proxy.conf.erb'
+end
+
+link '/etc/nginx/sites-enabled/default' do
+  action :delete
+end
+
+link "/etc/nginx/sites-available/proxy.conf" do
+  to "/etc/nginx/sites-enabled"
+  link_type :symbolic
+  action :create
 end
