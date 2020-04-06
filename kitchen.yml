@@ -25,7 +25,6 @@ platforms:
     driver:
       box: ubuntu/bionic64
 
-
 suites:
   - name: default
     verifier:
