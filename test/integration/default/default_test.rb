@@ -5,9 +5,9 @@
 
 
 
-# This is an example test, replace it with your own test.
+# Port 80 should be litsening its not
 describe port(80) do
-  it { should_not be_listening }
+  it { should be_listening }
 end
 
 describe service('nginx') do
@@ -18,7 +18,7 @@ end
 ## This should be changed to 8.11
 describe package('nodejs') do
   it {should be_installed}
-  its('version') {should cmp > '8.10.*'}
+  its('version') {should cmp > '/8\././\././\./'}
 end
 
 
@@ -32,5 +32,5 @@ end
 
 ## This should be 500 not nil
 describe http('http://localhost') do
-  its('status') {should cmp nil}
+  its('status') {should cmp 502}
 end

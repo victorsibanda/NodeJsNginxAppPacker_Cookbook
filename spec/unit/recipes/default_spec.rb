@@ -61,7 +61,7 @@ describe 'NodeJSNginx::default' do
     end
 
     it 'should symbolic link /etc/nginx/sites-available/proxy.conf to /etc/nginx/sites-enabled/proxy.conf' do
-      expect(chef_run).to create_link('/etc/nginx/sites-available/proxy.conf').with_link_type(:symbolic)
+      expect(chef_run).to create_link('/etc/nginx/sites-enabled/proxy.conf').with_link_type(:symbolic)
     end
 
     it 'should remove default link from /etc/nginx/sites-enabled/default' do

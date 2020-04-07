@@ -7,27 +7,19 @@
 include_recipe 'apt'
 include_recipe 'nodejs'
 
-
 apt_update 'update_sources' do
   action :update
 end
 
 package 'nginx'
-#package 'nodejs'
 package 'npm'
 
-
-service 'nginx' do
-  action [:enable, :start]
-end
-
-#nodejs_npm 'pm2'
-
 npm_package 'pm2'
-
 npm_package 'react'
 
-
+#service 'nginx' do
+#  action [:enable, :start]
+#end
 
 template "/etc/nginx/sites-available/proxy.conf" do
   source 'proxy.conf.erb'
@@ -39,9 +31,13 @@ link '/etc/nginx/sites-enabled/default' do
   notifies :restart, 'service[nginx]'
 end
 
-link "/etc/nginx/sites-available/proxy.conf" do
-  to "/etc/nginx/sites-enabled/proxy.conf"
+link "/etc/nginx/sites-enabled/proxy.conf" do
+  to "/etc/nginx/sites-available/proxy.conf"
   link_type :symbolic
   action :create
   notifies :restart, 'service[nginx]'
+end
+
+service 'nginx' do
+  action [:enable, :start]
 end
