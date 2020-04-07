@@ -4,16 +4,29 @@
 #
 # Copyright:: 2020, The Authors, All Rights Reserved.
 
+include_recipe 'apt'
+include_recipe 'nodejs'
+
+
 apt_update 'update_sources' do
   action :update
 end
 
 package 'nginx'
-package 'nodejs'
+#package 'nodejs'
+#package "curl"
+
 
 service 'nginx' do
   action [:enable, :start]
 end
+
+#nodejs_npm 'pm2'
+
+npm 'pm2'
+
+nodejs_npm 'react'
+
 
 
 template "/etc/nginx/sites-available/proxy.conf" do
