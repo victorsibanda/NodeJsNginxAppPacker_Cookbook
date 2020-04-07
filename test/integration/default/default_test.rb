@@ -18,7 +18,8 @@ end
 ## This should be changed to 8.11
 describe package('nodejs') do
   it {should be_installed}
-  its('version') {should cmp > '/8\././\././\./'}
+  its('version') {should cmp > '8.11.2*'}
+  #its('version') {should cmp > '/8\././\././\./'}
 end
 
 

@@ -12,7 +12,7 @@ apt_update 'update_sources' do
 end
 
 package 'nginx'
-package 'npm'
+#package 'npm'
 
 npm_package 'pm2'
 npm_package 'react'
@@ -23,6 +23,7 @@ npm_package 'react'
 
 template "/etc/nginx/sites-available/proxy.conf" do
   source 'proxy.conf.erb'
+  variables( proxy_port: node['nginx']['proxy_port'])
   notifies :restart, 'service[nginx]'
 end
 
