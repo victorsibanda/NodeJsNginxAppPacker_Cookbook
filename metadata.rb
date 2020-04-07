@@ -21,4 +21,3 @@ chef_version '>= 14.0'
 
 depends 'nodejs'
 depends 'apt'
-depends "build-essential"

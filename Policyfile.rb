@@ -14,3 +14,7 @@ run_list 'NodeJSNginx::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'NodeJSNginx', path: '.'
+
+cookbook 'nodejs', '~> 6.0.0', :supermarket
+
+cookbook 'apt', '~> 7.2.0', :supermarket

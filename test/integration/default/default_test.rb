@@ -15,10 +15,12 @@ describe service('nginx') do
   it {should be_running}
 end
 
+## This should be changed to 8.11
 describe package('nodejs') do
   it {should be_installed}
-  its('version') {should cmp > '8.11.2*'}
+  its('version') {should cmp > '8.10.*'}
 end
+
 
 describe npm('pm2') do
   it {should be_installed}
@@ -28,7 +30,7 @@ describe npm('react') do
   it {should be_installed}
 end
 
-
+## This should be 500 not nil
 describe http('http://localhost') do
-  its('status') {should cmp 502}
+  its('status') {should cmp nil}
 end

@@ -14,7 +14,7 @@ end
 
 package 'nginx'
 #package 'nodejs'
-#package "curl"
+package 'npm'
 
 
 service 'nginx' do
@@ -23,9 +23,9 @@ end
 
 #nodejs_npm 'pm2'
 
-npm 'pm2'
+npm_package 'pm2'
 
-nodejs_npm 'react'
+npm_package 'react'
 
 
 

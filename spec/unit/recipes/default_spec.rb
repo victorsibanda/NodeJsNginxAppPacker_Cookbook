@@ -32,11 +32,11 @@ describe 'NodeJSNginx::default' do
     end
 
     it 'should install pm2 via npm' do
-      expect(chef_run).to install_nodejs_npm('pm2')
+      expect(chef_run).to install_npm_package('pm2')
     end
 
     it 'should install react via npm' do
-      expect(chef_run).to install_nodejs_npm('react')
+      expect(chef_run).to install_npm_package('react')
     end
 
     it 'should install apt from a recipe' do
