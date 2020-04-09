@@ -35,6 +35,27 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "example-node-app-VICTOR-{{timestamp}}"
-  }]
+    "ami_name": "Node-Example-app-VictorSibanda-{{timestamp}}"
+  }],
+
+  "provisioners" : [
+    {
+      "type": "chef-solo",
+      "cookbook_paths": ["./cookbooks"],
+      "run_list" : ["NodeJSNginx::default"]
+    },
+    {
+      "type": "shell",
+      "inline": ["mkdir /home/ubuntu/app"]
+    },
+    {
+      "type": "file",
+      "source": "app/",
+      "destination": "/home/ubuntu/app"
+    },
+    {
+        "type" :  "shell",
+        "inline": ["cd /home/ubuntu/app", "sudo npm install", "sudo npm test"]
+    }
+  ]
 }
